@@ -70,12 +70,12 @@ export function activate(context: vscode.ExtensionContext) {
 			filters: {
 				"qtUi": ["ui"], 
 				"all": ["*"]
-			}
+			},
+			canSelectMany: false,
 		};
-		path = path || vscode.window.showOpenDialog(openOptions);
+		path = path || await vscode.window.showOpenDialog(openOptions).then((x) => x&&x[0]);
 		if(!path) {return;} 
-		
-		let pyside6Execution = new vscode.ProcessExecution("pyside6-designer", [path.path]);
+		const pyside6Execution = new vscode.ProcessExecution("pyside6-designer", [path.path]);
 		const taskDef: vscode.TaskDefinition = {
 			type: ''
 		}; 
@@ -113,14 +113,14 @@ class DataProv implements vscode.TreeDataProvider<vscode.TreeItem> {
 	}
 	getChildren(element?: vscode.TreeItem | undefined): vscode.ProviderResult<vscode.TreeItem[]> {
 		let children: vscode.TreeItem[] = []; 
-		let newUiItem = new vscode.TreeItem("new Ui Project");
+		let newUiItem = new vscode.TreeItem("new ui project");
 		newUiItem.command = {
-			title: 'new-Ui',
+			title: 'new-ui',
 			command: 'pyside6.new-ui'
 		};
 		let build = new vscode.TreeItem("build project"); 
 		build.command = {
-			title: "build Project",
+			title: "build project",
 			command: "pyside6.build-project"
 		};
 		let run = new vscode.TreeItem("run project"); 
@@ -128,7 +128,7 @@ class DataProv implements vscode.TreeDataProvider<vscode.TreeItem> {
 			title: "run project",
 			command: "pyside6.run-project"
 		};
-		let openDesigner = new vscode.TreeItem("open Designer");
+		let openDesigner = new vscode.TreeItem("open designer");
 		openDesigner.command = {
 			title: "open designer", 
 			command: "pyside6.open-designer"
@@ -138,4 +138,8 @@ class DataProv implements vscode.TreeDataProvider<vscode.TreeItem> {
 	}
 }
 
+
+function delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
 

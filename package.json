@@ -15,19 +15,19 @@
     "commands": [ 
       {
         "command": "pyside6.new-ui",
-        "title": "Pyside6:new-ui"
+        "title": "Pyside6: new-ui"
       },
       {
         "command": "pyside6.build-project",
-        "title": "Pyside6:build-project"
+        "title": "Pyside6: build-project"
       },
       {
         "command": "pyside6.run-project",
-        "title": "Pyside6:run-project"
+        "title": "Pyside6: run-project"
       },
       {
         "command": "pyside6.open-designer", 
-        "title": "Pyside6:open-designer",
+        "title": "Pyside6: open-designer",
         "category": "Pyside6"
       }
     ],
@@ -35,7 +35,6 @@
       "explorer/context": [
         {
           "command": "pyside6.open-designer",
-          "group": "Pyside6",
           "when": "resourceExtname == .ui"
         }
       ]
