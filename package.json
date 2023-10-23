@@ -1,0 +1,81 @@
+{
+  "name": "pyside6",
+  "displayName": "Pyside6",
+  "description": "Qt support with pyside6 clis ",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.83.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [ 
+      {
+        "command": "pyside6.new-ui",
+        "title": "Pyside6:new-ui"
+      },
+      {
+        "command": "pyside6.build-project",
+        "title": "Pyside6:build-project"
+      },
+      {
+        "command": "pyside6.run-project",
+        "title": "Pyside6:run-project"
+      },
+      {
+        "command": "pyside6.open-designer", 
+        "title": "Pyside6:open-designer",
+        "category": "Pyside6"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "pyside6.open-designer",
+          "group": "Pyside6",
+          "when": "resourceExtname == .ui"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "qt-pyside6",
+          "title": "QtPyside6", 
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "qt-pyside6": [
+        {
+          "id": "actions",
+          "name": "actions"
+        } 
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.83.0",
+    "@types/mocha": "^10.0.2",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "eslint": "^8.50.0",
+    "glob": "^10.3.3",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2",
+    "@vscode/test-electron": "^2.3.4"
+  }
+}
