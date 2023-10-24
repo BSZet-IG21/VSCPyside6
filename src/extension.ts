@@ -1,14 +1,23 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
+import { create } from 'domain';
 import * as vscode from 'vscode';
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
 
 	console.log("started");
 
+	if(!await checkForPython()) {
+		
+	}
+
+	
+	//register sidebar dataprovider  
 	vscode.window.registerTreeDataProvider("actions", new DataProv()); 
+
+
 	let newUiCommand = vscode.commands.registerCommand("pyside6.new-ui", async () => {	   
 		let location = await vscode.window.showSaveDialog(); 
 		if (!location ) {return; }
@@ -75,7 +84,7 @@ export function activate(context: vscode.ExtensionContext) {
 		};
 		path = path || await vscode.window.showOpenDialog(openOptions).then((x) => x&&x[0]);
 		if(!path) {return;} 
-		const pyside6Execution = new vscode.ProcessExecution("pyside6-designer", [path.path]);
+		const pyside6Execution = new vscode.ProcessExecution("pyside6-designer", [path.fsPath]);
 		const taskDef: vscode.TaskDefinition = {
 			type: ''
 		}; 
@@ -87,15 +96,19 @@ export function activate(context: vscode.ExtensionContext) {
 			pyside6Execution
 		);
 		let execution = await vscode.tasks.executeTask(task); 
-		
-		//temp fix 
-		//exec build after designer
-		//setTimeout(async () => await vscode.commands.executeCommand("pyside6.build-project"), 1500);
-		//wait for better idea
 	});
 
 
+	const createSlot = vscode.commands.registerCommand("pyside6.create-slot", (name: string, argumets: string): string => {
+		console.log("run");
+		console.log(name); 
+		console.log(arguments); 
 
+		return "hey"; 
+	});
+
+
+	context.subscriptions.push(createSlot); 
 	context.subscriptions.push(openDesigner); 
 	context.subscriptions.push(buildProject);
 	context.subscriptions.push(runProject); 
@@ -143,3 +156,7 @@ function delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
 }
 
+async function checkForPython(): Promise<boolean> {
+
+	return false; 
+}

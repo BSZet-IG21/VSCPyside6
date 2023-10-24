@@ -12,7 +12,11 @@
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [ 
+    "commands": [
+      {
+        "command": "pyside6.create-slot",
+        "title": "Pyside6: create-slot"  
+      }, 
       {
         "command": "pyside6.new-ui",
         "title": "Pyside6: new-ui"
@@ -55,7 +59,13 @@
           "name": "actions"
         } 
       ]
-    }
+    },
+    "snippets": [
+      {
+        "language": "python",
+        "path": "snippets/pythonsnippets.json"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
