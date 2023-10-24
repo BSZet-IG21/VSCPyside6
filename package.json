@@ -14,10 +14,6 @@
   "contributes": {
     "commands": [
       {
-        "command": "pyside6.create-slot",
-        "title": "Pyside6: create-slot"  
-      }, 
-      {
         "command": "pyside6.new-ui",
         "title": "Pyside6: new-ui"
       },
@@ -31,7 +27,7 @@
       },
       {
         "command": "pyside6.open-designer", 
-        "title": "Pyside6: open-designer",
+        "title": "open-designer",
         "category": "Pyside6"
       }
     ],
@@ -59,13 +55,7 @@
           "name": "actions"
         } 
       ]
-    },
-    "snippets": [
-      {
-        "language": "python",
-        "path": "snippets/pythonsnippets.json"
-      }
-    ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

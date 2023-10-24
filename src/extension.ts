@@ -99,16 +99,6 @@ export async function activate(context: vscode.ExtensionContext) {
 	});
 
 
-	const createSlot = vscode.commands.registerCommand("pyside6.create-slot", (name: string, argumets: string): string => {
-		console.log("run");
-		console.log(name); 
-		console.log(arguments); 
-
-		return "hey"; 
-	});
-
-
-	context.subscriptions.push(createSlot); 
 	context.subscriptions.push(openDesigner); 
 	context.subscriptions.push(buildProject);
 	context.subscriptions.push(runProject); 
