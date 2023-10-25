@@ -1,6 +1,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import { create } from 'domain';
+
 import * as vscode from 'vscode';
 
 // This method is called when your extension is activated
@@ -97,6 +97,7 @@ export async function activate(context: vscode.ExtensionContext) {
 		);
 		let execution = await vscode.tasks.executeTask(task); 
 	});
+	
 
 
 	context.subscriptions.push(openDesigner); 

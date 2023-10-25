@@ -15,3 +15,5 @@ resources/.arch-internal-preview.css
 .vscode-test/
 node_modules/
 out/
+venv/
+pyside6*.vsix
